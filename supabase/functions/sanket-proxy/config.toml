@@ -1,0 +1,2 @@
+[functions.sanket-proxy]
+verify_jwt = false

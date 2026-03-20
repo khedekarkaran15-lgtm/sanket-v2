@@ -1,0 +1,11 @@
+{
+    "rewrites": [
+      { "source": "/api/serper/:path*",  "destination": "https://google.serper.dev/:path*" },
+      { "source": "/api/youtube/:path*",  "destination": "https://www.googleapis.com/:path*" },
+      { "source": "/api/gemini/:path*",   "destination": "https://generativelanguage.googleapis.com/:path*" },
+      { "source": "/api/newsapi/:path*",  "destination": "https://newsapi.org/:path*" },
+      { "source": "/api/serp/:path*",     "destination": "https://serpapi.com/:path*" },
+      { "source": "/api/pubmed/:path*",   "destination": "https://eutils.ncbi.nlm.nih.gov/:path*" }
+    ]
+  }
+  

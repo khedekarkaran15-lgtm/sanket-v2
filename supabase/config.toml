@@ -1,0 +1,4 @@
+project_id = "vqpwmvbqvrvfdnvwowsa"
+
+[functions.analyze-trends]
+verify_jwt = false

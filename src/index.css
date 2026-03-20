@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 3%;
+    --foreground: 225 20% 93%;
+
+    --card: 222 40% 5%;
+    --card-foreground: 225 20% 93%;
+
+    --popover: 222 40% 5%;
+    --popover-foreground: 225 20% 93%;
+
+    --primary: 160 84% 39%;
+    --primary-foreground: 222 47% 3%;
+
+    --secondary: 222 30% 12%;
+    --secondary-foreground: 225 20% 93%;
+
+    --muted: 222 25% 15%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 3%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 100% / 0.07;
+    --input: 222 25% 15%;
+    --ring: 160 84% 39%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 40% 5%;
+    --sidebar-foreground: 225 20% 93%;
+    --sidebar-primary: 160 84% 39%;
+    --sidebar-primary-foreground: 222 47% 3%;
+    --sidebar-accent: 222 25% 15%;
+    --sidebar-accent-foreground: 225 20% 93%;
+    --sidebar-border: 0 0% 100% / 0.07;
+    --sidebar-ring: 160 84% 39%;
+
+    /* Brand colors */
+    --brand-man-matters: 217 92% 60%;
+    --brand-be-bodywise: 330 86% 70%;
+    --brand-little-joys: 263 70% 73%;
+    --brand-root-labs: 160 84% 39%;
+    --brand-new-category: 38 92% 50%;
+
+    /* Signal colors */
+    --signal-red: 0 84% 60%;
+    --signal-amber: 38 92% 50%;
+    --signal-green: 160 84% 39%;
+
+    /* Surface variants */
+    --surface-elevated: 222 35% 8%;
+    --surface-overlay: 222 40% 6%;
+
+    /* SankET brand colors */
+    --teal: 174 84% 32%;
+    --saffron: 24 95% 53%;
+
+    /* Glow effects */
+    --glow-primary: 0 0% 0% / 0;
+    --glow-primary-active: 160 84% 39% / 0.15;
+
+    /* Font system */
+    --font-title: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .dark {
+    --background: 222 47% 3%;
+    --foreground: 225 20% 93%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+  }
+}
+
+@layer components {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .font-title {
+    font-family: var(--font-title);
+    font-weight: 700;
+  }
+  .font-label {
+    font-family: var(--font-label);
+    font-weight: 500;
+  }
+  .font-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+}
+
+/* Radar sweep animation */
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes glow-border {
+  0%, 100% { box-shadow: 0 0 20px hsl(160 84% 39% / 0.1); }
+  50% { box-shadow: 0 0 40px hsl(160 84% 39% / 0.25); }
+}
+
+@keyframes fade-up-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes status-fade {
+  0% { opacity: 0; transform: translateY(8px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes sonar-ripple {
+  0% { r: 6; opacity: 0.6; }
+  100% { r: 24; opacity: 0; }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 4s linear infinite;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 1.5s ease-in-out infinite;
+}
+
+.animate-glow-border {
+  animation: glow-border 2s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up-in 0.5s ease-out forwards;
+}
+
+.animate-status-fade {
+  animation: status-fade 10s ease-in-out;
+}
