@@ -6,7 +6,7 @@ const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY as string | undefin
 const NEWS_API_KEY    = import.meta.env.VITE_NEWS_API_KEY    as string | undefined;
 const GEMINI_API_KEY  = import.meta.env.VITE_GEMINI_API_KEY  as string | undefined;
 
-const GEMINI_MODEL = 'gemini-3.1-flash-lite-preview';
+const GEMINI_MODEL = 'gemini-2.5-flash'; 
 const SERPER_URL   = 'https://google.serper.dev/search';
 const YOUTUBE_URL  = 'https://www.googleapis.com/youtube/v3/search';
 const NEWSAPI_URL  = 'https://api.thenewsapi.com/v1/news/all';

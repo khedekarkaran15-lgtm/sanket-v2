@@ -2,7 +2,7 @@ import supabase from '../lib/supabase';
 import type { ScoredTrend, OpportunityBrief } from '../lib/types';
 import type { Stage2Corpus, RichSignal } from './stage2_validation';
 
-const GEMINI_MODEL    = 'gemini-3.1-flash-lite-preview';
+const GEMINI_MODEL    = 'gemini-2.5-flash';
 const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 const isValidUUID = (id: string) =>
@@ -210,7 +210,7 @@ PART C — SCORING:
   Apply: CAGR 65% weight, Market Size 35% weight.
   Show: "CAGR X% → axis score Y. Market Size ₹Z crore → axis score W. Weighted: (Y × 0.65) + (W × 0.35) = [result]."
   CAGR axis: <10%=2, 10-15%=4, 15-20%=6, 20-30%=7, 30-40%=8, 40-60%=9, >60%=10
-  Market Size axis (Mosaic-addressable): <₹10Cr=3, ₹10-20Cr=5, ₹20-30Cr=6.5, ₹30-40Cr=7, ₹40-50Cr=8, >₹50Cr=9,>₹100Cr=10
+  Market Size axis (Mosaic-addressable): <₹10Cr=3, ₹10-50Cr=5, ₹50-200Cr=6, ₹200-500Cr=7, ₹500-1000Cr=8, >₹1000Cr=9
   NOTE: A ₹20Cr market is valid and scores 5. Do not inflate to justify a higher score.
 
 PART D — SANITY CHECK:
@@ -288,6 +288,7 @@ Return ONLY a valid JSON object. No markdown fences. No text before or after. Ex
 
 {
   "velocityReasoning": "2-3 sentence reasoning summary for velocity (keep concise)",
+  "usLagIndicator": "US/UK status: [mainstream/early adopter/emerging] → India lag: ~X months → India entry window: [open/closing/closed]. One sentence justification.",
   "velocityScore": number,
   "marketReasoning": "2-3 sentence reasoning summary with TAM/CAGR figures",
   "marketScore": number,
@@ -424,10 +425,10 @@ async function generateOneBrief(trend: ScoredTrend, runId: string): Promise<Oppo
       strength: (['Strong', 'Moderate', 'Weak'].includes(e?.strength) ? e.strength : 'Moderate') as 'Strong' | 'Moderate' | 'Weak',
     }));
 
-    const velocityScore    = Number(parsed.velocityScore)    || 0;
+    const velocityScore    = Math.max(1, Number(parsed.velocityScore)    || 1);
     const marketScore      = Math.max(3, Number(parsed.marketScore) || 3);
-    const competitionScore = Number(parsed.competitionScore) || 0;
-    const timingScore      = Number(parsed.timingScore)      || 0;
+    const competitionScore = Math.max(1, Number(parsed.competitionScore) || 1);  // floor at 1
+    const timingScore      = Math.max(1, Number(parsed.timingScore)      || 1);
     const overallScore     = Math.round(((velocityScore + marketScore + competitionScore + timingScore) / 4) * 10) / 10;
 
     const brief: OpportunityBrief = {

@@ -52,7 +52,7 @@ const API_CONSTRAINTS_NOTE = `SankET currently runs on free-tier API plans, whic
 • Serper (Reddit/Google Search): ~2,500 calls/month
 • YouTube Data API v3: 10,000 units/day (~8 scans)
 • SerpAPI (Google Trends): 250 searches/month
-• Gemini: gemini-flash-lite (free tier model)
+• Gemini: gemini-2.5-flash (paid model)
 • NewsAPI: 30-day article lookback
 
 In a production deployment with paid plans, SankET would operate with significantly higher scraping frequency, deeper Reddit/YouTube signal extraction, access to Gemini Pro for richer scoring, and real-time trend monitoring rather than on-demand scans.`;
@@ -318,7 +318,7 @@ const Index = () => {
       </header>
 
       {/* ── HERO ── */}
-      <main className="flex-1 flex flex-col items-center justify-center px-6 pb-16 max-w-2x1 mx-auto w-full text-center">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 pb-12 max-w-2xl mx-auto w-full text-center">
 
         <p className="text-[10px] font-label uppercase tracking-[3px] text-teal/70 mb-5">
           India D2C Wellness Intelligence
@@ -327,7 +327,7 @@ const Index = () => {
         <h1 className="text-4xl md:text-5xl font-title text-foreground mb-5 leading-tight">
           Detect <span className="text-teal">₹30Cr+</span> Wellness Opportunities{" "}
           <br className="hidden sm:block" />
-          Before They Hit the Mainstream.
+          3–6 Months Before They Hit the Mainstream.
         </h1>
 
         <p className="text-sm text-muted-foreground mb-8 max-w-lg font-body leading-relaxed">
